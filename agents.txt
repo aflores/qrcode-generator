@@ -1,0 +1,152 @@
+# Instructions for AI Code Generator: QR Code Generator with Text Overlay
+
+## Project Overview
+Create a self-contained HTML application that generates QR codes with customizable text overlay. The application should be a single HTML file that includes all necessary CSS and JavaScript.
+
+## Core Requirements
+
+### 1. Dependencies
+- Use QRCode.js from CDN: https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js
+- Use Font Awesome from CDN: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css
+
+### 2. User Interface
+Create a clean, modern interface with:
+- Input field for QR code content (URL, phone, email)
+- Information icon with popup showing format examples
+- Textarea for two-line overlay text
+- Character counter for overlay text
+- Generate and Download buttons
+- QR code display area
+
+### 3. QR Code Generation
+- Generate QR codes at 400x400 pixels
+- Use high error correction level (H)
+- Support for:
+  - URLs
+  - Phone numbers (tel: format)
+  - Email addresses (mailto: format)
+  - Email with subject
+
+### 4. Text Overlay Features
+- Maximum 20 characters per line
+- Two lines maximum
+- Automatic text sizing
+- Red text color
+- White circular background
+- White border around text area
+- Text area size: 35% of QR code size
+
+### 5. Interactive Features
+- Clickable format examples
+- Real-time character counting
+- Input validation
+- Error messages
+- Download functionality
+
+## Implementation Steps
+
+1. Create HTML Structure
+   - Basic HTML5 structure
+   - Container for inputs and QR code
+   - Information popup structure
+
+2. Add CSS Styling
+   - Modern, clean design
+   - Responsive layout
+   - Popup styling
+   - Error message styling
+   - Character counter styling
+
+3. Implement JavaScript Functionality
+   - QR code generation
+   - Text overlay rendering
+   - Character counting
+   - Format example handling
+   - Input validation
+   - Download functionality
+
+4. Add Error Handling
+   - Input validation
+   - Error messages
+   - Character limit enforcement
+
+## Code Structure
+
+### HTML
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags -->
+    <!-- Title -->
+    <!-- CSS links -->
+    <!-- JavaScript links -->
+</head>
+<body>
+    <!-- Main container -->
+    <!-- Input fields -->
+    <!-- Information popup -->
+    <!-- QR code display -->
+</body>
+</html>
+```
+
+### CSS Requirements
+- Responsive design
+- Clean, modern styling
+- Popup positioning
+- Error message styling
+- Character counter styling
+- Button styling
+- Input field styling
+
+### JavaScript Requirements
+- QR code generation
+- Text overlay handling
+- Character counting
+- Format example handling
+- Input validation
+- Download functionality
+- Error handling
+
+## Testing Requirements
+- Test all QR code formats
+- Test text overlay limits
+- Test download functionality
+- Test error handling
+- Test responsive design
+- Test browser compatibility
+
+## Performance Considerations
+- Optimize canvas operations
+- Minimize DOM operations
+- Efficient text sizing algorithm
+- Smooth popup interactions
+
+## Security Considerations
+- Sanitize user inputs
+- Validate file downloads
+- Prevent XSS attacks
+- Secure CDN usage
+
+## Accessibility Requirements
+- Proper ARIA labels
+- Keyboard navigation
+- Screen reader support
+- Color contrast compliance
+
+## Browser Support
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Notes
+- Keep the application self-contained in a single HTML file
+- Use CDN for external dependencies
+- Ensure mobile responsiveness
+- Maintain clean, commented code
+- Follow modern JavaScript practices
+- Use semantic HTML elements
+- Implement proper error handling
+- Ensure cross-browser compatibility 
