@@ -20,7 +20,7 @@ A simple, self-contained HTML application that generates QR codes with customiza
 
 1. Clone or download this repository:
 ```bash
-git clone https://github.com/yourusername/qrcode-generator.git
+git clone https://github.com/aflores/qrcode-generator.git
 ```
 
 2. No additional dependencies are required! The application uses:
