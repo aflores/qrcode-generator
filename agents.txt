@@ -149,4 +149,11 @@ Create a clean, modern interface with:
 - Follow modern JavaScript practices
 - Use semantic HTML elements
 - Implement proper error handling
-- Ensure cross-browser compatibility 
+- Ensure cross-browser compatibility
+
+## Recent Changes
+- Added footer text as part of the QR code image
+- Improved popup positioning for format examples
+- Added filename generation from footer text
+- Added visual feedback for character limit in footer text
+- Fixed various UI/UX improvements 
