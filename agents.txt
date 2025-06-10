@@ -1,7 +1,87 @@
 # Instructions for AI Code Generator: QR Code Generator with Text Overlay
 
 ## Project Overview
-Create a self-contained HTML application that generates QR codes with customizable text overlay. The application should be a single HTML file that includes all necessary CSS and JavaScript.
+Create a self-contained HTML page with JavaScript code to generate QR codes. The page should include:
+
+1. Input Fields:
+   - Text input for QR code content (URL, phone, email)
+   - Text input for footer text (max 40 characters)
+   - Character counter for footer text
+   - Error message display for validation
+   - Information icon with popup for format examples
+   - Dropdown for saved entries
+
+2. Button Group:
+   - Generate QR Code button (primary blue)
+   - Download QR Code button (appears after generation)
+   - Delete saved entry button (red, appears when entry selected)
+
+3. QR Code Display:
+   - 400x400 pixel canvas
+   - Footer text below QR code
+   - High error correction level
+   - Clean white background
+
+4. Local Storage:
+   - Automatically save entries after generation
+   - Load saved entries in dropdown
+   - Delete functionality for saved entries
+   - Clear form after deletion
+
+5. UI/UX Features:
+   - Modern, clean design
+   - Responsive layout
+   - Character limit indicator
+   - Visual feedback for limits
+   - Centered button layout
+   - Proper spacing and alignment
+   - Hover effects on buttons
+   - Clear error messages
+
+6. Format Examples:
+   - URLs: https://www.example.com
+   - Phone: tel:+1234567890
+   - Email: mailto:example@email.com
+   - Email with subject: mailto:example@email.com?subject=Hello
+
+7. Download Features:
+   - PNG format
+   - Automatic filename from footer text
+   - Clean white background
+   - High resolution
+
+8. Dependencies:
+   - QRCode.js library
+   - Font Awesome icons
+   - No other external dependencies
+
+9. Browser Support:
+   - Chrome (recommended)
+   - Firefox
+   - Safari
+   - Edge
+
+10. Error Handling:
+    - Input validation
+    - Character limit enforcement
+    - Clear error messages
+    - Confirmation for deletion
+
+11. Styling:
+    - Modern color scheme
+    - Consistent button styles
+    - Responsive design
+    - Clean typography
+    - Proper spacing
+    - Clear visual hierarchy
+
+12. Accessibility:
+    - Clear labels
+    - Proper contrast
+    - Keyboard navigation
+    - Screen reader support
+
+The application should be self-contained in a single HTML file with embedded CSS and JavaScript.
 
 ## Core Requirements
 
@@ -149,4 +229,11 @@ Create a clean, modern interface with:
 - Follow modern JavaScript practices
 - Use semantic HTML elements
 - Implement proper error handling
-- Ensure cross-browser compatibility 
+- Ensure cross-browser compatibility
+
+## Recent Changes
+- Added footer text as part of the QR code image
+- Improved popup positioning for format examples
+- Added filename generation from footer text
+- Added visual feedback for character limit in footer text
+- Fixed various UI/UX improvements 
