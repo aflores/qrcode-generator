@@ -146,6 +146,94 @@
         input[type="text"].warning {
             border-color: #ff6b6b;
         }
+        .saved-entries {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .button-group button:not(.delete-btn),
+        .download-btn {
+            height: 40px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .button-group button:not(.delete-btn):hover,
+        .download-btn:hover {
+            background-color: #1976D2;
+        }
+        .download-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 0;
+        }
+        .save-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 14px;
+            white-space: nowrap;
+            height: 40px;
+        }
+        .save-checkbox input[type="checkbox"] {
+            margin: 0;
+            width: 16px;
+            height: 16px;
+        }
+        .saved-entries-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .saved-entries {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+        .delete-btn {
+            height: 40px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #dc3545;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -187,10 +275,22 @@
             <input type="text" id="overlayText" placeholder="Enter text to display below QR code" required maxlength="40">
             <div class="char-count" id="charCount">0/40 characters</div>
             <div class="error" id="overlayTextError">Please enter footer text</div>
+            <div class="saved-entries-container">
+                <select id="savedEntries" class="saved-entries">
+                    <option value="">Select a saved entry</option>
+                </select>
+            </div>
         </div>
 
-        <button onclick="generateQR()">Generate QR Code</button>
-        <button class="download-btn" onclick="downloadQR()" style="display: none;">Download QR Code</button>
+        <div class="button-group">
+            <button onclick="generateQR()">Generate QR Code</button>
+            <div class="download-section" style="display: none;">
+                <button class="download-btn" onclick="downloadQR()">Download QR Code</button>
+            </div>
+            <button id="deleteEntry" class="delete-btn" style="display: none;" onclick="deleteSavedEntry()">
+                <i class="fas fa-trash"></i> Delete saved entry
+            </button>
+        </div>
         
         <div id="qrcode"></div>
         <div class="footer-text" id="footerText"></div>
@@ -335,13 +435,101 @@
                     qrcodeDiv.appendChild(img);
                     currentQRCode = canvas;
 
-                    // Show download button
-                    document.querySelector('.download-btn').style.display = 'inline-block';
+                    // Show download section
+                    document.querySelector('.download-section').style.display = 'flex';
+
+                    // Save to local storage
+                    saveToLocalStorage();
+                    
+                    // Clean up temporary div
+                    document.body.removeChild(tempDiv);
                 }
-                
-                // Clean up temporary div
-                document.body.removeChild(tempDiv);
             }, 100);
+        }
+
+        // Local Storage Functions
+        function saveToLocalStorage() {
+            const text = document.getElementById('text').value;
+            const overlayText = document.getElementById('overlayText').value;
+            
+            if (!text || !overlayText) return;
+
+            const savedData = JSON.parse(localStorage.getItem('qrHistory') || '{}');
+            savedData[overlayText] = {
+                text: text,
+                overlayText: overlayText,
+                timestamp: new Date().toISOString()
+            };
+
+            localStorage.setItem('qrHistory', JSON.stringify(savedData));
+            updateSavedEntries();
+        }
+
+        function loadFromLocalStorage() {
+            const savedData = JSON.parse(localStorage.getItem('qrHistory') || '{}');
+            const select = document.getElementById('savedEntries');
+            
+            // Clear existing options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+
+            // Add saved entries to dropdown
+            Object.keys(savedData).sort().forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key;
+                select.appendChild(option);
+            });
+        }
+
+        function updateSavedEntries() {
+            loadFromLocalStorage();
+        }
+
+        function handleSavedEntrySelect() {
+            const select = document.getElementById('savedEntries');
+            const deleteBtn = document.getElementById('deleteEntry');
+            const selectedKey = select.value;
+            
+            if (!selectedKey) {
+                deleteBtn.style.display = 'none';
+                return;
+            }
+
+            const savedData = JSON.parse(localStorage.getItem('qrHistory') || '{}');
+            const selectedData = savedData[selectedKey];
+
+            if (selectedData) {
+                document.getElementById('text').value = selectedData.text;
+                document.getElementById('overlayText').value = selectedData.overlayText;
+                // Update character count
+                document.getElementById('charCount').textContent = `${selectedData.overlayText.length}/40 characters`;
+                // Show delete button
+                deleteBtn.style.display = 'flex';
+            }
+        }
+
+        function deleteSavedEntry() {
+            const select = document.getElementById('savedEntries');
+            const selectedKey = select.value;
+            
+            if (!selectedKey) return;
+
+            if (confirm('Are you sure you want to delete this saved entry?')) {
+                const savedData = JSON.parse(localStorage.getItem('qrHistory') || '{}');
+                delete savedData[selectedKey];
+                localStorage.setItem('qrHistory', JSON.stringify(savedData));
+                
+                // Reset the form
+                document.getElementById('text').value = '';
+                document.getElementById('overlayText').value = '';
+                document.getElementById('charCount').textContent = '0/40 characters';
+                document.getElementById('deleteEntry').style.display = 'none';
+                
+                // Update the dropdown
+                loadFromLocalStorage();
+            }
         }
 
         function downloadQR() {
@@ -357,10 +545,10 @@
                 // Get the overlay text and create a filename
                 const overlayText = document.getElementById('overlayText').value;
                 const sanitizedText = overlayText
-                    .substring(0, 15) // Take first 15 characters
-                    .replace(/[^a-zA-Z0-9\s-]/g, '') // Remove special characters
-                    .replace(/\s+/g, '-') // Replace spaces with dashes
-                    .toLowerCase(); // Convert to lowercase
+                    .substring(0, 15)
+                    .replace(/[^a-zA-Z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .toLowerCase();
                 
                 const filename = `${sanitizedText}.png`;
                 
@@ -370,6 +558,12 @@
                 link.click();
             }
         }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromLocalStorage();
+            document.getElementById('savedEntries').addEventListener('change', handleSavedEntrySelect);
+        });
     </script>
 </body>
 </html> 

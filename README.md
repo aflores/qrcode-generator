@@ -1,95 +1,61 @@
-# QR Code Generator with Text Overlay
+# QR Code Generator
 
-A simple, self-contained HTML application that generates QR codes with customizable text overlay. The application allows you to create QR codes for URLs, phone numbers, and email addresses, with the ability to add a two-line text overlay in the center of the QR code.
+A modern, user-friendly web application for generating QR codes with customizable footer text.
 
 ## Features
 
-- Generate QR codes for various types of content:
-  - URLs
-  - Phone numbers
-  - Email addresses
-  - Email with subject
-- Add a two-line text overlay in the center of the QR code
-- Automatic text sizing to fit the available space
+- Generate QR codes from text, URLs, phone numbers, or email addresses
+- Add custom footer text below the QR code
+- High error correction level for better scanning reliability
+- Character limit indicator for footer text
+- Format examples for different QR code types
 - Download QR codes as PNG images
-- Real-time character count for overlay text
-- Format examples with one-click population
-- High error correction for better scannability
-
-## Installation
-
-1. Clone or download this repository:
-```bash
-git clone https://github.com/aflores/qrcode-generator.git
-```
-
-2. No additional dependencies are required! The application uses:
-   - QRCode.js (loaded from CDN)
-   - Font Awesome (loaded from CDN)
+- Automatic filename generation from footer text
+- Local storage for saving and managing QR code entries
+- Responsive design with modern UI
 
 ## Usage
 
-1. Open `index.html` in a web browser
-2. Enter the content for your QR code:
-   - Click the information icon (i) to see format examples
-   - Click any example to automatically fill the input
-   - Supported formats:
-     - URLs: `https://www.example.com`
-     - Phone: `tel:+1234567890`
-     - Email: `mailto:example@email.com`
-     - Email with subject: `mailto:example@email.com?subject=Hello`
+1. Enter the text or URL in the first input field
+   - Click the info icon for format examples
+   - Supported formats: URLs, phone numbers, email addresses
 
-3. Enter the overlay text:
-   - Maximum 20 characters per line
-   - Two lines maximum
-   - Text will be automatically sized to fit
-   - Text appears in red in the center of the QR code
+2. Enter footer text (max 40 characters)
+   - Character counter shows current length
+   - Visual feedback when limit is reached
 
-4. Click "Generate QR Code" to create your QR code
+3. Click "Generate QR Code" to create the QR code
+   - The QR code will appear with the footer text
+   - A download button will appear below
 
-5. Click "Download QR Code" to save the image
+4. Download the QR code
+   - Click the download button to save as PNG
+   - Filename is automatically generated from footer text
 
-## Format Examples
-
-### URLs
-```
-https://www.example.com
-```
-
-### Phone Numbers
-```
-tel:+1234567890
-```
-
-### Email Addresses
-```
-mailto:example@email.com
-```
-
-### Email with Subject
-```
-mailto:example@email.com?subject=Hello
-```
+5. Manage saved entries
+   - Select from previously saved entries in the dropdown
+   - Delete saved entries using the delete button
+   - All entries are automatically saved to local storage
 
 ## Technical Details
 
-- The application uses the QRCode.js library for QR code generation
-- High error correction level (H) is used to ensure scannability with the text overlay
-- The text overlay is automatically sized to fit the available space
-- The QR code is generated at 400x400 pixels for optimal quality
-- The text overlay area is 35% of the QR code size
+- Built with vanilla JavaScript
+- Uses QRCode.js library for QR code generation
+- Font Awesome for icons
+- Local storage for saving entries
+- Responsive design with CSS Flexbox
+- No external dependencies except for QR code generation
 
 ## Browser Support
 
-The application works in all modern browsers:
-- Chrome
+- Chrome (recommended)
 - Firefox
 - Safari
 - Edge
 
 ## License
 
-This project is open source and available under the MIT License.
+MIT License
 
 ## Contributing
 
