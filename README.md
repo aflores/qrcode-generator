@@ -39,15 +39,22 @@ git clone https://github.com/aflores/qrcode-generator.git
      - Email: `mailto:example@email.com`
      - Email with subject: `mailto:example@email.com?subject=Hello`
 
-3. Enter the overlay text:
-   - Maximum 20 characters per line
-   - Two lines maximum
-   - Text will be automatically sized to fit
-   - Text appears in red in the center of the QR code
+3. Enter the footer text:
+   - Maximum 40 characters
+   - Text appears at the bottom of the QR code
 
-4. Click "Generate QR Code" to create your QR code
+4. Click "Generate QR Code" to create your QR code.
+   - The QR code will appear with the footer text
+   - A download button will appear below
 
 5. Click "Download QR Code" to save the image
+   - A PNG file is generated
+   - The filename is generated from the footer text
+
+6. Manage saved entries
+   - Select from previously saved entries in the dropdown
+   - Delete saved entries using the delete button
+   - All entries are automatically saved to your browser's local storage
 
 ## Format Examples
 
