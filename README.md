@@ -16,26 +16,33 @@ A modern, user-friendly web application for generating QR codes with customizabl
 
 ## Usage
 
-1. Enter the text or URL in the first input field
-   - Click the info icon for format examples
-   - Supported formats: URLs, phone numbers, email addresses
+1. Open `index.html` in a web browser
 
-2. Enter footer text (max 40 characters)
-   - Character counter shows current length
-   - Visual feedback when limit is reached
+2. Enter the content for your QR code:
+   - Click the information icon (i) to see format examples
+   - Click any example to automatically fill the input
+   - Supported formats:
+     - URLs: `https://www.example.com`
+     - Phone: `tel:+1234567890`
+     - Email: `mailto:example@email.com`
+     - Email with subject: `mailto:example@email.com?subject=Hello`
 
-3. Click "Generate QR Code" to create the QR code
+3. Enter the footer text:
+   - Maximum 40 characters
+   - Text appears at the bottom of the QR code
+
+4. Click "Generate QR Code" to create your QR code.
    - The QR code will appear with the footer text
    - A download button will appear below
 
-4. Download the QR code
-   - Click the download button to save as PNG
-   - Filename is automatically generated from footer text
+5. Click "Download QR Code" to save the image
+   - A PNG file is generated
+   - The filename is generated from the footer text
 
-5. Manage saved entries
+6. Manage saved entries
    - Select from previously saved entries in the dropdown
    - Delete saved entries using the delete button
-   - All entries are automatically saved to local storage
+   - All entries are automatically saved to your browser's local storage
 
 ## Technical Details
 
